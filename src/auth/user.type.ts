@@ -1,9 +1,9 @@
-export class UserDto {
+export interface User {
     firstName: string;
     lastName: string;
     username: string;
     age: number;
-    phoneNumber: string;
+    phoneNumber: number;
     role: string;
     password: string;
 }
