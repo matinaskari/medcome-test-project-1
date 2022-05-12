@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { User } from './user.type';
 
 @Injectable()
@@ -23,6 +23,13 @@ export class AuthService {
     }];
 
     login(username: string, password: string): User {
-        return this.users.find(user => user.username === username && user.password === password);;
+        const user = this.users.find(user => user.username === username && user.password === password);
+
+        if (!user) {
+            throw new UnauthorizedException("wrong username or password!");
+
+        }
+
+        return user;
     }
 }
