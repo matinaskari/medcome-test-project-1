@@ -3,33 +3,38 @@ import { User } from './user.type';
 
 @Injectable()
 export class AuthService {
-    private users: User[] = [{
-        firstName: "Matin",
-        lastName: "Askari",
-        username: "mtn",
-        age: 21,
-        phoneNumber: 9136870393,
-        role: "user",
-        password: "1234"
+  private users: User[] = [
+    {
+      id: 1,
+      firstName: 'Matin',
+      lastName: 'Askari',
+      username: 'mtn',
+      age: 21,
+      phoneNumber: 9136870393,
+      role: 'user',
+      password: '1234',
     },
     {
-        firstName: "Ali",
-        lastName: "Ahmadi",
-        username: "ali",
-        age: 30,
-        phoneNumber: 9398791213,
-        role: "admin",
-        password: "5678"
-    }];
+      id: 2,
+      firstName: 'Ali',
+      lastName: 'Ahmadi',
+      username: 'ali',
+      age: 30,
+      phoneNumber: 9398791213,
+      role: 'admin',
+      password: '5678',
+    },
+  ];
 
-    login(username: string, password: string): User {
-        const user = this.users.find(user => user.username === username && user.password === password);
+  login(username: string, password: string): User {
+    const user = this.users.find(
+      (user) => user.username === username && user.password === password,
+    );
 
-        if (!user) {
-            throw new UnauthorizedException("wrong username or password!");
-
-        }
-
-        return user;
+    if (!user) {
+      throw new UnauthorizedException('wrong username or password!');
     }
+
+    return user;
+  }
 }
