@@ -5,7 +5,7 @@ import { User } from './user.type';
 export class AuthService {
   private users: User[] = [
     {
-      id: 1,
+      id: '1',
       firstName: 'Matin',
       lastName: 'Askari',
       username: 'mtn',
@@ -15,7 +15,7 @@ export class AuthService {
       password: '1234',
     },
     {
-      id: 2,
+      id: '2',
       firstName: 'Ali',
       lastName: 'Ahmadi',
       username: 'ali',
@@ -33,6 +33,16 @@ export class AuthService {
 
     if (!user) {
       throw new UnauthorizedException('wrong username or password!');
+    }
+
+    return user;
+  }
+
+  getUserById(id: string): User {
+    const user = this.users.find((user) => user.id === id);
+
+    if (!user) {
+      throw new UnauthorizedException();
     }
 
     return user;
